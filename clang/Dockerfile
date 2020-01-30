@@ -19,7 +19,6 @@ RUN cd root && \
           -DLLVM_INCLUDE_DOCS=OFF \
           -DLLVM_ENABLE_LTO=Thin \
           -DCLANG_ENABLE_ARCMT=OFF \
-          -DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
           ../llvm && \
     ninja && \
     ninja install && \
