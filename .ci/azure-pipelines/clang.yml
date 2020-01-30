@@ -20,6 +20,7 @@ resources:
 
 variables:
   tag: '$(Build.Name):nightly'
+  dockerHub: 'PersonalDockerHub'
   dockerHubID: 'kunaltyagi'
 
 stages:
