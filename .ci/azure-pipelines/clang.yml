@@ -19,7 +19,7 @@ resources:
 - repo: self
 
 variables:
-  tag: "$(Build.Name):nightly"
+  tag: "$(Build.Name)"
   dockerHub: "PersonalDockerHub"
   dockerHubID: "kunaltyagi"
 
@@ -27,7 +27,7 @@ stages:
 - stage: FasterClang
   displayName: "Build docker with a faster clang"
   jobs:  
-  - job: clangLTO
+  - job: "clangLTO:nightly"
     timeoutInMinutes: 360
     displayName: "Build Clang w/ LTO"
     pool:
