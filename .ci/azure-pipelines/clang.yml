@@ -10,7 +10,7 @@ pr:
 
 schedules:
 - cron: "0 0 * * *"
-  displayName: 'Daily midnight build'
+  displayName: "Daily midnight build"
   branches:
     include:
     - master
@@ -19,29 +19,29 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.Name):nightly'
-  dockerHub: 'PersonalDockerHub'
-  dockerHubID: 'kunaltyagi'
+  tag: "$(Build.Name):nightly"
+  dockerHub: "PersonalDockerHub"
+  dockerHubID: "kunaltyagi"
 
 stages:
 - stage: FasterClang
-  displayName: 'Build docker with a faster clang'
+  displayName: "Build docker with a faster clang"
   jobs:  
-  - job: clang
+  - job: clangLTO
     timeoutInMinutes: 360
-    displayName: 'Build Clang w/ LTO'
+    displayName: "Build Clang w/ LTO"
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: "ubuntu-latest"
     steps:
     - task: Docker@2
-      displayName: 'Build clang w/ LTO docker image'
+      displayName: "Build docker image: $(tag)"
       inputs:
         command: build
-        dockerfile: 'clang/Dockerfile'
+        dockerfile: "clang/Dockerfile"
         repository: $(dockerHubID)
         tags: $(tag)
     - task: Docker@2
-      displayName: 'Push clang w/LTO image'
+      displayName: "Push docker image $(tag)"
       inputs:
         command: push
         containerRegistry: $(dockerHub)
