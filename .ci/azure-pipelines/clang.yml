@@ -40,11 +40,11 @@ stages:
         command: build
         dockerfile: "clang/Dockerfile"
         repository: $(dockerHubID)
-        tags: $(imageName):$(tag)
+        tags: $(imageName)
     - task: Docker@2
       displayName: "Push docker image $(imageName):$(tag)"
       inputs:
         command: push
         containerRegistry: $(dockerHub)
         repository: $(dockerHubID)
-        tags: $(imageName):$(tag)
+        tags: $(imageName)
