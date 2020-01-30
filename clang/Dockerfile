@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 RUN apt-get update && \
     apt-get install -y \
     build-essential cmake git ninja-build zlib1g zlib1g-dev \
-    python python-pygments python-yaml\
+    python python-pygments python-yaml && \
     rm -fr /var/lib/apt/lists/*
 RUN cd root && \
     git clone --depth=1 git://github.com/llvm/llvm-project && \
