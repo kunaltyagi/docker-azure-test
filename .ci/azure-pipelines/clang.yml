@@ -26,23 +26,24 @@ variables:
 stages:
 - stage: FasterClang
   displayName: "Build docker with a faster clang"
+  imageName: "clangLTO"
   jobs:  
-  - job: "clangLTO"
+  - job: "$(imageName)"
     timeoutInMinutes: 360
     displayName: "Build Clang w/ LTO"
     pool:
       vmImage: "ubuntu-latest"
     steps:
     - task: Docker@2
-      displayName: "Build docker image: clangLTO:$(tag)"
+      displayName: "Build docker image: $(imageName):$(tag)"
       inputs:
         command: build
         dockerfile: "clang/Dockerfile"
-        tags: "clangLTO:$(tag)"
+        tags: "$(imageName):$(tag)"
     - task: Docker@2
       displayName: "Push docker image $(imageName):$(tag)"
       inputs:
         command: push
         containerRegistry: $(dockerHub)
-        repository: $(dockerHubID)
-        tags: "clangLTO:$(tag)"
+        repository: "$(dockerHubID)/$(imageName)"
+        tags: "$(tag)"
