@@ -26,7 +26,8 @@ variables:
 stages:
 - stage: FasterClang
   displayName: "Build docker with a faster clang"
-  imageName: "clangLTO"
+  variables:
+    imageName: "clangLTO"
   jobs:  
   - job: "$(imageName)"
     timeoutInMinutes: 360
