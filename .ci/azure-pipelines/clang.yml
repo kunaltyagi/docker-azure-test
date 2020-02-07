@@ -29,7 +29,7 @@ stages:
   variables:
     imageName: "clangLTO"
   jobs:  
-  - job: "$(imageName)"
+  - job: "${{variables.imageName}}"
     timeoutInMinutes: 360
     displayName: "Build Clang w/ LTO"
     pool:
